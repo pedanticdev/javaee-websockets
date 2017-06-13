@@ -2,23 +2,25 @@ package com.pedantic.annotation;
 
 import javax.inject.Inject;
 import javax.websocket.*;
+import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@ServerEndpoint("/chat")
-public class ChatEndpoint {
+@ServerEndpoint(value = "/connect/{user}")
+public class ChatEndPointParams {
+
 
     private static final ConcurrentLinkedQueue<Session> peers = new ConcurrentLinkedQueue<>();
     @Inject
-    private  Logger logger;
+    private Logger logger;
 
     @OnOpen
     public void open(Session session) {
-        logger.log(Level.INFO, "New session opened");
         peers.add(session);
+
     }
 
     @OnClose
@@ -28,10 +30,11 @@ public class ChatEndpoint {
     }
 
     @OnMessage
-    public void relayMessage(String message, Session session) throws IOException {
+    public void relayMessage(String message, Session session, @PathParam("user") String name) throws IOException {
         for (Session peer : peers) {
             if (!peer.equals(session)) {
-                peer.getBasicRemote().sendText(message);
+                logger.log(Level.INFO, "User name is " + name);
+                peer.getBasicRemote().sendText(name + " <br/> " + message);
             }
         }
     }
