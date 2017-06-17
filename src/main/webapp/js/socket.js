@@ -1,4 +1,4 @@
-var uri = "ws://" + document.location.host + '/websockets/' + "chat";
+var uri = "ws://" + document.location.host + '/websocket/' + "chat";
 var websocket = new WebSocket(uri);
 var messageArea = document.getElementById("messages");
 websocket.onopen = function (evt) {

@@ -22,6 +22,6 @@ public class ClientEndPoint {
 
         logger.log(Level.INFO, "%%%%%%%%%%% My simple pojo received on the client %%%%%%%%%%%%");
         logger.log(Level.INFO, mySimplePojo.toString());
-//        session.getBasicRemote().sendObject(mySimplePojo);
+        session.getBasicRemote().sendObject(mySimplePojo);
     }
 }

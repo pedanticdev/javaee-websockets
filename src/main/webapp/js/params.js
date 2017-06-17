@@ -4,7 +4,7 @@ $(function () {
 
 
     function setupWebSocket() {
-        var uri = "ws://" + document.location.host + '/websockets/' + "connect/" + $("#userName").val();
+        var uri = "ws://" + document.location.host + '/websocket/' + "connect/" + $("#userName").val();
         websocket = new WebSocket(uri);
 
         websocket.onmessage = function (evt) {
