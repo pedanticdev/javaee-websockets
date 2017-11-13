@@ -8,6 +8,7 @@ import javax.websocket.EndpointConfig;
 public class MySimplePojoDecoder implements Decoder.Text<MySimplePojo> {
     @Override
     public MySimplePojo decode(String s) throws DecodeException {
+        //Using JSON-B (JSR 367) API for mapping from JSON to T
         return JsonbBuilder.create().fromJson(s, MySimplePojo.class);
     }
 

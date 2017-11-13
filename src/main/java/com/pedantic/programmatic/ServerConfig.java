@@ -3,6 +3,7 @@ package com.pedantic.programmatic;
 import javax.websocket.Endpoint;
 import javax.websocket.server.ServerApplicationConfig;
 import javax.websocket.server.ServerEndpointConfig;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 

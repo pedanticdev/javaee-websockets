@@ -8,6 +8,7 @@ import javax.websocket.EndpointConfig;
 public class MySimplePojoEncoder implements Encoder.Text<MySimplePojo> {
     @Override
     public String encode(MySimplePojo mySimplePojo) throws EncodeException {
+                //Using JSON-B (JSR 367) API for mapping to JSON from T
         return JsonbBuilder.create().toJson(mySimplePojo);
 
     }
